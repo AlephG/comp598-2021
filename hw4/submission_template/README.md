@@ -6,7 +6,7 @@ In this project, I setup a simple password protected Bokeh dashboad that allows 
 
 1. First download the dataset into the data directory from https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9
 
-2. Run the trim-2020.sh script from the command line to generate a dataset restricted to 2020 incidents.
+2. Run the following command in your terminal: `egrep '^\d+,.{6}2020' DATASET_FILENAME >> nyc_311_2020.csv`
 
 3. Run src/trim-data.ipynb to further trim the data and explore it.
 
