@@ -1,33 +1,27 @@
 import json
 import requests
+import os
 import os.path as osp
 import argparse
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Get parent dir
 parentdir = Path(__file__).parents[1]
 
-# Authentication files
-reddit_auth_fname = '/Users/solimlegris/Projects/api_keys/comp598/reddit-login.json'
-api_keys_fname = '/Users/solimlegris/Projects/api_keys/comp598/reddit-api-auth.json'
+# Authentication keys
+load_dotenv()
+
 
 def authenticate():
-    # Get reddit api credentials
-    with open(api_keys_fname, 'r') as f:
-        api_login = json.loads(f.readline())
-    
-    # Get Reddit login credentials
-    with open(reddit_auth_fname, 'r') as f:
-        reddit_login = json.loads(f.readline())
+    # Create authentication token
+    auth = requests.auth.HTTPBasicAuth(os.getenv('CLIENT_ID'), os.getenv('SECRET_KEY'))
 
-    # Create authetication token
-    auth = requests.auth.HTTPBasicAuth(api_login['client_id'], api_login['secret_key'])
-
-    # Create login type dictionary
+    # Create login type dictionary with login credentials
     data = {
         'grant_type': 'password',
-        'username': reddit_login['username'],
-        'password': reddit_login['password']
+        'username': os.getenv('REDDIT_USER'),
+        'password': os.getenv('REDDIT_PWD')
     }
     
     # Create user-agent in headers
@@ -47,18 +41,18 @@ def authenticate():
 
 def sample(headers, by_subscriber=True):
     
-    # Determine which subreddits to scrape and save file
+    # Determine which subreddits to scrape and which output file to use
     if by_subscriber:
         subreddits = ['funny','AskReddit','gaming', 'aww', 'pics', 'Music', 'science',
                       'worldnews', 'videos', 'todayilearned']
-        savefile = osp.join(parentdir, 'data', 'sample1.json')
+        savefile = osp.join(parentdir, 'sample1.json')
     else:
         subreddits = ['AskReddit', 'memes', 'politics', 'nfl', 'nba', 'wallstreetbets',
                       'teenagers', 'PublicFreakout', 'leagueoflegends', 'unpopularopinion']
-        savefile = osp.join(parentdir, 'data', 'sample2.json') 
+        savefile = osp.join(parentdir, 'sample2.json') 
      
     for sub in subreddits:
-        # Send request
+        # Send request for data
         base_url = f'https://oauth.reddit.com/r/{sub}/new'
         request = requests.get(base_url, headers=headers, params={'limit':'100'})
         
