@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 parentdir = Path(__file__).parents[1]
 
 # Authentication keys
+# Need to have .env file with authetication in root directory of script
 load_dotenv()
 
 

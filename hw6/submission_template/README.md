@@ -14,7 +14,7 @@ Run `conda create --name <envname> --file requirements.txt`.
 
 Run `pip -r requirements.txt`.
 
-#### Dotenv
+### Dotenv
 
 Create a .env file with required variables for authentication.
 
