@@ -16,6 +16,12 @@ def parse_args():
 
     return args.o, args.s
 
+def verify_directory(out_fname):
+
+    # Verify if save directory exists, make it if necessary
+    save_dir = os.path.split(out_fname)[0]
+    if not os.path.exists(save_dir):
+        os.mkdir(save_dir)
 
 
 def authenticate():
@@ -56,8 +62,13 @@ def collect(out_fname, subreddit, headers):
             f.write(json.dumps(child) + '\n')
 
 def main():
+
     out_fname, subreddit = parse_args()
+    
+    verify_directory(out_fname)
+
     headers = authenticate()
+    
     collect(out_fname, subreddit, headers)
 
 if __name__ == '__main__':

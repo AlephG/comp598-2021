@@ -1,15 +1,23 @@
 import json
 import argparse
 import random
+import os
 
 def parse_args():
 
     # Parse arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('-o', help='<output_file>  <json_file> <num_posts_to_outout>', nargs=3, required=True)
+    parser.add_argument('-o', help='<output_file>  <json_file> <num_posts_to_output>', nargs=3, required=True)
     args = parser.parse_args()
 
     return args.o[0], args.o[1], int(args.o[2])
+
+def verify_directory(out_fname):
+    
+    # Verify if save directory exists, make it if necessary
+    save_dir = os.path.split(out_fname)[0]
+    if not os.path.exists(save_dir):
+        os.mkdir(save_dir)
 
 def extract(out_fname, in_json_fname, num_posts):
     
@@ -47,6 +55,8 @@ def main():
     
     out_fname, in_json_fname, num_posts = parse_args()
     
+    verify_directory(out_fname)
+
     extract(out_fname, in_json_fname, num_posts)
     
 if __name__ == '__main__':
