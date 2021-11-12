@@ -20,8 +20,9 @@ def verify_directory(out_fname):
 
     # Verify if save directory exists, make it if necessary
     save_dir = os.path.split(out_fname)[0]
-    if not os.path.exists(save_dir):
-        os.mkdir(save_dir)
+    if save_dir != '':
+        if not os.path.exists(save_dir):
+            os.mkdir(save_dir)
 
 
 def authenticate():
@@ -52,7 +53,7 @@ def authenticate():
 
 def collect(out_fname, subreddit, headers):
     # Send request for data
-    base_url = f'https://oauth.reddit.com/r/{subreddit}/new'
+    base_url = f'https://oauth.reddit.com{subreddit}/new'
     request = requests.get(base_url, headers=headers, params={'limit':'100'})
 
     # Write json entries for each post in file

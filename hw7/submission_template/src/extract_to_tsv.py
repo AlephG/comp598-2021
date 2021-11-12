@@ -16,8 +16,9 @@ def verify_directory(out_fname):
     
     # Verify if save directory exists, make it if necessary
     save_dir = os.path.split(out_fname)[0]
-    if not os.path.exists(save_dir):
-        os.mkdir(save_dir)
+    if save_dir != '':
+        if not os.path.exists(save_dir):
+            os.mkdir(save_dir)
 
 def extract(out_fname, in_json_fname, num_posts):
     
@@ -41,7 +42,7 @@ def extract(out_fname, in_json_fname, num_posts):
                     next_post = posts_to_extract.pop(0)
                 else:
                     break
-    
+     
     # Extract name and title, write to file
     with open(out_fname, 'w') as f:
         f.write('Name\ttitle\tcoding\n')

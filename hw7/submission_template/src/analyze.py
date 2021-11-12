@@ -1,16 +1,25 @@
 import pandas as pd
 import argparse
 import json
+import os
 
 def parse_args():
 
     # Parse arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument('-i', help='coded_file.tsv', required=True)
+    parser.add_argument('-i', help='<coded_file.tsv>', required=True)
     parser.add_argument('-o', help='<output_file>', required=False)
     args = parser.parse_args()
 
     return args.i, args.o
+
+def verify_directory(out_fname):
+
+    # Verify if save directory exists, make it if necessary
+    save_dir = os.path.split(out_fname)[0]
+    if save_dir != '':
+        if not os.path.exists(save_dir):
+            os.mkdir(save_dir)
 
 def analyze(data, out):
     
@@ -41,6 +50,9 @@ def main():
     
     data = pd.read_csv(coded_fname, delimiter='\t')
     
+    if out is not None:
+        verify_directory(out)
+
     analyze(data, out)
 
 if __name__=='__main__':
