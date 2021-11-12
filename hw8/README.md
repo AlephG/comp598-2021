@@ -1,4 +1,4 @@
-# Welcome to HW7! 
+# Welcome to HW8! 
 
 **Important instructions** 
 Please read these instructions before submitting your assignment. 
@@ -9,52 +9,44 @@ To avoid pain and discomfort, follow the steps below carefully:
 In this directory, you'll find another folder, `submission_template`.
 **ALL YOUR ANSWERS** must be inside the `submission_template` folder. 
 
-HW7 has several files that must be submitted. They all should be inside `submission_template` following the file structure below:
+HW8 has several files that must be submitted. They all should be inside `submission_template` following the file structure below:
 
 ```
 submission_template
 ├── src
-    ├── collect_newest.py
-    ├── extract_to_tsv.py
-    ├── analyze.py
-├── concordia.json
-├── mcgill.json
-├── annotated_concordia.tsv
-├── annotated_mcgill.tsv
+    ├── compile_word_counts.py
+    ├── compute_pony_lang.py
+├── test
+    ├── test_tasks.py
+├── word_counts.json
 ├── other folders are optional in this assignment
 ```
 
-`src` can also carry any other additional code files that you need to write.
 
 ## Your code
 
-`collect_newest.py` must be successfully invoked with the following command:
+`compile_word_counts.py` must be successfully invoked with the following command:
 
-`python collect_newest.py -o <output_file> -s <subreddit>`
+`python compile_word_counts.py -o /path/to/word_counts.json -d path/to/clean_dialog.csv`.
 
-Every time you run it, it produces a JSON file. Using the instructions in the PDF, run it twice and produce `concordia.json` and `mcgill.json`. These JSON output files must be placed in the root of `submission_template` folder.
+Using the instructions in the PDF, run it twice and produce `word_counts.json`, which should be placed at the root folder of `submission_template` folder.
+Make sure your JSON file follows the specified format, and ensure you use the right name keys for the ponies. Everything is properly specified in the PDF file.
 
-`extract_to_tsv.py` must be successfully invoked with the following command:
+The input file for `compile_word_counts.py`, `clean_dialog.csv`, can be found at: https://www.kaggle.com/liury123/my-little-pony-transcript. Alternatively, you can reuse the one from HW3.
 
-`python extract_to_tsv.py -o <out_file> <json_file> <num_posts_to_output>`
-
-Using the instructions in the PDF, run it twice to produce two `.tsv` files:
-
-`python extract_to_tsv.py -o annotated_mcgill.tsv mcgill.json 50` produces `annotated_mcgill.tsv`, which should be placed in the root of `submission_template` folder.
-`python extract_to_tsv.py -o annotated_concordia.tsv mcgill.json 50` produces `annotated_concordia.tsv`, which should be placed in the root of `submission_template` folder.
-
-`analyze.py` must be successfully invoked with the following command:
-
-`python analyze.py -i <coded_file.tsv> [-o <output_file>]`
-
-The `-o` argument is optional. If omitted, print the result to stdout. **Ensure your script also dumps the output file when invoked with the `-o` argument**. 
+A list of stopwords that need to be removed is available in the `data/` folder.
 
 
-If needed, you can have auxiliary code/scripts. Make sure everything goes under the `src` folder.
+`compute_pony_lang.py` must be successfully invoked with the following command:
+`python compute_pony_lang.py -c <pony_counts.json> -n <num_words>`.
 
-**DO NOT MODIFY** the structure of the folders in this assignment.
+Output the results of `compute_pony_lang.py` to the standard output. Ensure your output follows the specified format, and ensure you use the right name keys for the ponies. Everything is properly specified in the PDF file. 
+
+The instructions for writing the test cases are in the PDF file for this HW.
 
 
+
+**DO NOT MODIFY** the fixture file names, nor the test file name. You can write as many methods as you need in the test file. You can also write other fixtures if you want. 
 
 ## Setting up the project
 
@@ -80,11 +72,7 @@ pip install -r requirements.txt
 
 ## Are you on the right track?
 
-For each HW assignment, we'll provide you with a set of automated tests. They are located under the `test` folder. 
-For this assignment, do not edit the contents of it!
-
-These tests should give you some guidance during the process of solving the problems.
-In the `submission_template` folder, run:
+In this assignment, you must write your own test cases! Follow the instructions on the PDF. In the `submission_template` folder, run:
 
 ```
 python -m unittest
@@ -92,10 +80,9 @@ python -m unittest
 
 and check the output.
 
-If you are on the right track, you should receive a nice message saying all check passed! 
+All your tests must pass!
 
-**ProTip** Make sure the tests succeed in each HW assignment.
-
+We also have our own test cases to guide your submission. Do not modify anything on **test_files_exist.py**. 
 
 ## Other tips
 
@@ -113,7 +100,7 @@ Once you are happy with your results, head to the `submission_template` folder a
 
 **Replace `STUDENTID` with your McGill ID (a number).** For example, if your student ID is `123456`, run `python submission_wrapper.py -id 123456`.
 
-**Make sure you call this script from the `submission_template` folder for hw7 and not from other folders.**
+**Make sure you call this script from the `submission_template` folder for hw8 and not from other folders.**
 
 The script will zip everything needed for this assignment into a **`STUDENTID_submission_template.zip` file. You must submit the produced .zip on MyCourses**.
 
