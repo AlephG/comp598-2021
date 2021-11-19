@@ -8,7 +8,7 @@ from copy import deepcopy
 
 def parse_args():
     
-    parser = argparse.ArgumentParser(description='Analyze My Little Pony dialog stats')
+    parser = argparse.ArgumentParser(description='Compile pony word counts')
     parser.add_argument('-o', help='<word_counts_json>', required=True)
     parser.add_argument('-d', help='<clean_dialog.csv file>', required=True)
     args = parser.parse_args()
@@ -25,7 +25,7 @@ def verify_directory(path):
             os.mkdir(save_dir)
 
 
-def clean(dialog_fname):
+def clean(dialog_fname, threshold=5):
     
     pony = ['twilight sparkle', 'applejack', 'rarity', 'pinkie pie', 'rainbow dash', 'fluttershy']
     data = pd.read_csv(dialog_fname)
@@ -58,9 +58,9 @@ def clean(dialog_fname):
     data['dialog'] = data['dialog'].apply(
         lambda x: ' '.join([word for word in x.split() if word not in (stop)]))
 
-    # Remove words that appear less than 5 times across all speech acts
+    # Remove words that appear less than threshold times across all speech acts
     word_count_all = data['dialog'].str.split(expand=True).stack().value_counts()
-    word_count_all = word_count_all[word_count_all >= 5]
+    word_count_all = word_count_all[word_count_all >= threshold]
     words = word_count_all.index.tolist()
     data['dialog'] = data['dialog'].apply(
         lambda x: ' '.join([word for word in x.split() if word in (words)]))
@@ -89,9 +89,6 @@ def word_count(data,words):
     words = {words[i]:0 for i in range(len(words))}
     for p in pony_word_count:
         pony_word_count[p] = deepcopy(words)
-
-    with open('initdict.txt', 'w') as f:
-        f.write(str(pony_word_count))
 
     # Group by character
     data['dialog'] = data.groupby(['pony'])['dialog'].transform(lambda x: ' '.join(x))
