@@ -1,128 +1,39 @@
-# comp598-2021
-<<<<<<< HEAD
-Fork of class repo. Homework submissions for COMP598: Data Science taught by Prof. Derek Ruths at McGill University. 
+# Data Science Projects
 
-This repository contains all submitted assignments.
->>>>>>> upstream/main
+This repository contains datascience projects completed in the context of COMP598 taught at McGill University in the Fall 2021 semester by Prof. Derek Ruths. Each `hw*` folder contains a completed assignment. Project files are in `hw*/submission_template`. Following is a short description of each assignment.
 
-# General submission instructions
+## HW1: Mini Data Science Project
 
-**Important** 
-Please read these instructions located in the corresponding assignment folder before submitting it. For example, instructions for HW1 are located at `hw1/README.md`.
-If you do not follow the template specified here, **we will not able to grade your assignment**! 
-To avoid pain and discomfort, follow the steps below carefully:
+Analysis of tweets produced by Russian trolls during the 2016 US election and pubished by the group 538.
 
-## Getting this code
+## HW2: Unix Server and Command Line Tools
 
-This code contains the templates for every HW assignment in this course.
-Download the code from Github.
+Setting up a webserver and a database server on a Unix EC2 instance using AWS.
 
+## HW3: Unix and Python Analysis
 
-## HW Templates
-Navigate to the sub-directory `hwn`, where `n` is the number of the HW assignment (for example, `hw1`). There, you'll find another folder, `submission_template`.
-**ALL YOUR ANSWERS** must be inside the `submission_template` folder. 
+Doing basic analysis on speech acts from the *My Little Pony* show.
 
-Whereas each HW assignment might have some variations, you may usually find the following structure inside `submission_template`:
+## HW4: Setting up a Bokeh Dashboard
 
-```
-submission_template
-├── data/
-├── scripts/
-├── src/
-├── test/
-```
+Displaying response time to incidents in New York City for different zipcodes in a simple Bokeh dashboard set up on an AWS server.
 
-In each assignment, we'll give you precise instructions of the files and folder you should change to complete the exercises.
+## HW5: Data Collection and Cleaning
 
+Cleaning data for analysis and doing unit testing to validate approach.
 
-## Setting up the project
+## HW6: API Data Collection and Web Scraping
 
-Make sure you have these elements installed in your computer:
+Collecting data from reddit posts using Reddit's API and performing simple analyses on them. Using alternative data collection methods (e.g. webscraping).
 
-* Python 3.6 or higher
-* `pip` - see instructions [here](https://packaging.python.org/tutorials/installing-packages/)
+## HW7: Data Annotation
 
-Wait - what is all that?
+Manually annotating data, analyzing and performing open coding to learn about the importance of data annotation/features.
 
-At this time, you might have tried any other programming language, and you know most of them have a wide variety of libraries that you can use. In this course, we'll use a ton of them! Starting from this assignment.
+## HW8: Simple Natural Language Processing
 
-`pip` will help you to manage these dependencies in a very easy way. Do you see a file named `requirements.txt`? It contains the libraries we'll need (to wither test, grade or run the assignment). It also bakes a fixed version on it, to avoid mismatching problems.
+Performing a simple TF-IDF analysis on *My Little Pony* speech acts
 
-Once you install `pip`, run (in the `submission_template` folder):
+## HW9: Network Modelling
 
-```
-pip install -r requirements.txt
-```
-
-For this assignment, it should install `pandas` for you.
-
-After you run this command, you are ready to go!
-
-## Are you on the right track?
-
-For each HW assignment, we'll provide you with a set of automated tests. They are located under the `test` folder. 
-For this assignment, do now edit the contents of it!
-
-These tests should give you some guidance during the process of solving the problems.
-In the `submission_template` folder, run:
-
-```
-python -m unittest
-```
-
-and check the output.
-
-If you are on the right track, you should receive a nice message saying all check passed! Something like that:
-
-```
-RUNNING TESTS FOR HW1 - dataset.tsv
-Ensure dataset.tsv exists
-✅
-Check header
-✅
-Check file contents
-✅
-You are all set! 💜
-.
-RUNNING TESTS FOR HW1 - results.tsv
-Ensure results.tsv exists
-✅
-Check header
-✅
-Check file contents
-✅
-You are all set! 💜
-.
-----------------------------------------------------------------------
-Ran 2 tests in 0.029s
-
-```
-
-**ProTip** Make sure the tests succeed in each HW assignment.
-
-## Other tips
-
-* `virtualenv` is an optional asset to help you keeping your Python environment organized.
-* In many operating systems, you might need to replace the command `python` with `python3`. Watch out for that and **make sure you are always using Python 3**.
-* If you are familiar with Git, clone this repository. But be careful! You can easily run into merge issues. Make sure you are familiar enough with git before going down on this path.
-
-### virtualenv
-
-If you install `virtualenv`, here are some tips:
-`python -m venv hwenv` creates a new environment. `deactivate` deactivates an existing env. To load the new env you created, run `source hwenv/bin/activate`.
-
-## Submitting the assignment
-
-
-Once you are happy with your results, zip the **`submission_template` and send it through MyCourses**.
-
-Make sure you zip and submit the entire folder. Just click on the `submission_template` folder and zip it once you complete the exercises.
-
-The final zip file should be a `submission_template.zip` file.
-
-Please do not submit any other file formats or folder structures.
-
-**Note** This is VERY important. Please make sure you follow these steps accordingly, otherwise we won't be able to grade your assignment! 
-
-Happy coding!
-
+Analyzing conversation data using basic network modelling.
