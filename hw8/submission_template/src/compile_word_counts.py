@@ -46,24 +46,20 @@ def clean(dialog_fname, threshold=5):
     data = data.drop(['title', 'writer'], axis=1)
     
     # Replace punctuation characters with space
-    pat = '[()[\],[()[\],\-.?!:;#&]'
+    pat = '[()[\],\-.?!:;#&]'
     data['dialog'] = data['dialog'].str.replace(pat, ' ', regex=True)
     
-    # Remove non alphabetic words
-    data['dialog'] = data['dialog'].apply(lambda x: ' '.join(
-        [word for word in x.split() if word.isalpha()]))
-
-    # Remove stop words
+    # Remove non alphabetic words and stop words
     stop = load_stop_words()
-    data['dialog'] = data['dialog'].apply(
-        lambda x: ' '.join([word for word in x.split() if word not in (stop)]))
+    data['dialog'] = data['dialog'].apply(lambda x: ' '.join(
+        [word for word in x.split() if word.isalpha() and word not in stop]))
 
     # Remove words that appear less than threshold times across all speech acts
     word_count_all = data['dialog'].str.split(expand=True).stack().value_counts()
     word_count_all = word_count_all[word_count_all >= threshold]
     words = word_count_all.index.tolist()
     data['dialog'] = data['dialog'].apply(
-        lambda x: ' '.join([word for word in x.split() if word in (words)]))
+        lambda x: ' '.join([word for word in x.split() if word in words]))
 
     return data, words
     
