@@ -2,8 +2,7 @@
 <<<<<<< HEAD
 Fork of class repo. Homework submissions for COMP598: Data Science taught by Prof. Derek Ruths at McGill University. 
 
-=======
-We're so glad that you're taking this class! Here are some resources for the 2021 offering of COMP 598. These will be important to completing the homeworks.
+This repository contains all submitted assignments.
 >>>>>>> upstream/main
 
 # General submission instructions
