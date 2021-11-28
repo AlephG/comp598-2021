@@ -17,12 +17,13 @@ def verify_directory(path):
 
 def parse_args():
 
-    parser = argparse.ArgumentParser(description='Compile pony word counts')
+    parser = argparse.ArgumentParser(description='build interaction network')
     parser.add_argument('-i', help='<script_input.csv>', required=True)
     parser.add_argument('-o', help='<interaction_network.json>', required=True)
     args = parser.parse_args()
 
     return args.i, args.o
+
 
 def format_data(data):
     data['pony'] = data.pony.str.lower()
@@ -30,6 +31,7 @@ def format_data(data):
     data = data[['title', 'pony']]
     
     return data
+
 
 def get_ponies_list(data, exceptions):
 
@@ -40,13 +42,16 @@ def get_ponies_list(data, exceptions):
     
     return most_popular
 
-def build_graph(data):
+
+def get_interactions(data):
     
     exceptions = ['others', 'and', 'ponies', 'all'] 
     most_popular = get_ponies_list(data, exceptions)
     
-    graph = nx.Graph()
+    # Intialize interactions dictionary
+    interactions = {}
     
+    # Get interactions
     for idx, speech_act in data.iterrows():
         
         # If last speech, we are done
@@ -73,41 +78,28 @@ def build_graph(data):
         if cur_pony == next_pony:
             continue
         
-        # Add edge to graph
-        if cur_pony in graph:
-            if next_pony in graph[cur_pony]:
-                graph[cur_pony][next_pony]['weight'] += 1
+        # Add interaction between ponies, for both ponies
+        if cur_pony in interactions:
+            if next_pony in interactions[cur_pony]:
+                interactions[cur_pony][next_pony] += 1
             else:
-                graph.add_edge(cur_pony, next_pony, weight=1)
+                interactions[cur_pony][next_pony] = 1 
         else:
-            graph.add_edge(cur_pony, next_pony, weight=1)
-    
-    return graph
-
-def build_json(graph):
-    json_dict = nx.readwrite.json_graph.node_link_data(graph)
-    links = json_dict['links']
-    json_dict = {}
-    
-    for link in links:
+            interactions[cur_pony] = {}
+            interactions[cur_pony][next_pony] = 1
         
-        source = link['source']
-        target = link['target']
-        weight = link['weight']
-        
-        if source in json_dict:
-            json_dict[source][target] = weight
+        if next_pony in interactions:
+            if cur_pony in interactions[next_pony]:
+                interactions[next_pony][cur_pony] += 1
+            else: 
+                interactions[next_pony][cur_pony] = 1
         else:
-            json_dict[source] = {}
-            json_dict[source][target] = weight
+            interactions[next_pony] = {}
+            interactions[next_pony][cur_pony] = 1
 
-        if target in json_dict:
-            json_dict[target][source] = weight
-        else:
-            json_dict[target] = {}
-            json_dict[target][source] = weight
+    
+    return interactions
 
-    return json_dict    
 
 def main():
     
@@ -117,14 +109,13 @@ def main():
     
     data = format_data(data)
 
-    graph = build_graph(data)
+    interactions = get_interactions(data)
     
-    json_format = build_json(graph)
-
     verify_directory(output_fname)
     
     with open(output_fname, 'w') as f:
-        f.write(json.dumps(json_format, indent=2))
+        json.dump(interactions, f, indent=2)
+        #f.write(json.dumps(interactions, indent=2))
 
 
 if __name__=='__main__':

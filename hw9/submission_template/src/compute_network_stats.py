@@ -22,10 +22,11 @@ def verify_directory(path):
         if not os.path.exists(save_dir):
             os.mkdir(save_dir)
 
+
 def get_graph(json_data):
     
     graph = nx.Graph()
-
+    # Build graph
     for pony in json_data:
         for pony2 in json_data[pony]:
             graph.add_edge(pony, pony2, weight=json_data[pony][pony2])
