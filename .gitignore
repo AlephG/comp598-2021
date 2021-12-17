@@ -145,3 +145,4 @@ cython_debug/
 hw10
 /hw1/data/IRAhandle_tweets_1.csv
 hw4/data/nyc_311_2020_trimmed.csv
+russian-trolls/data/IRAhandle_tweets_1.csv
