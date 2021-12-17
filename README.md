@@ -1,6 +1,6 @@
 # Data Science Projects
 
-This repository contains datascience projects completed in the context of COMP598 taught at McGill University in the Fall 2021 semester by Prof. Derek Ruths. Each `hw*` folder contains a completed assignment. Project files are in `hw*/submission_template`. Following is a short description of each assignment.
+This repository contains datascience projects completed in the context of COMP598 taught at McGill University in the Fall 2021 semester by Prof. Derek Ruths. Each directory contains a different project. All projects were exclusively completed in the command line environment. Following is a short description of each project. 
 
 ## HW1: Mini Data Science Project
 
