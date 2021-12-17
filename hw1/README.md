@@ -14,7 +14,7 @@ Run `conda create --name <envname> --file requirements.txt`.
 Run `pip -r requirements.txt`.
 
 ### Data
-The small dataset contained in `data/` is from https://github.com/fivethirtyeight/russian-troll-tweets/.
+Download one of the datasets from  https://github.com/fivethirtyeight/russian-troll-tweets/.
 
 ## Running 
 
