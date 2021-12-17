@@ -12,11 +12,11 @@ Note: the server does not exist anymore.
 
 3. Run src/trim-data.ipynb to further trim the data and explore it.
 
-4. Run src/preprocess.py to prepare the data for the Bokeh dashboard
+4. Run `src/preprocess.py` to prepare the data for the Bokeh dashboard
 
 ## Running
 
-1. Use the command `bokeh serve nyc_dash --port PORT --auth-module path\to\nyc-dash\auth.py`
+1. Use the command `bokeh serve nyc_dash --port PORT --auth-module path\to\nyc-dash\auth.py` to serve the dashboard on the port of your choice!
 
 2. Access the Bokeh dashboard through your browser!
 
