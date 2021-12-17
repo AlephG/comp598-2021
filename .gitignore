@@ -143,4 +143,4 @@ cython_debug/
 ./hw4/submission_template/data/
 */submission_wrapper.py
 hw10
-
+/hw1/data/IRAhandle_tweets_1.csv
