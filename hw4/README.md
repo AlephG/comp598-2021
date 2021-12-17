@@ -1,6 +1,8 @@
 # New York City Dashboard Project
 
-In this project, I setup a simple password protected Bokeh dashboad that allows users to compare average monthly incident response times of different areas to the city's average monthly incident response time in 2020. This project was done in the context of COMP598: Data Science at McGill University.
+In this project, I setup a simple password protected Bokeh dashboad on an Amazon EC2 instance that allows users to compare average monthly incident response times of different areas to the city's average monthly incident response time in 2020. This project was done in the context of COMP598: Data Science at McGill University.
+
+Note: the server does not exist anymore.
 
 ## Setup
 
