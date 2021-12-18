@@ -2,38 +2,38 @@
 
 This repository contains data science projects completed in the context of COMP598 taught at McGill University in the Fall 2021 semester by Prof. Derek Ruths. Each directory contains a different project. All projects were exclusively completed in the command line environment. Following is a short description of each project. 
 
-## HW1: Mini Data Science Project
+## Mini Data Science Project (russian-trolls)
 
 Analysis of tweets produced by Russian trolls during the 2016 US election and pubished by the group 538.
 
-## HW2: Unix Server and Command Line Tools
+## Unix Server and Command Line Tools (unix-servers)
 
 Setting up a webserver and a database server on a Unix EC2 instance using AWS.
 
-## HW3: Unix and Python Analysis
+## Unix and Python Analysis (unix-script)
 
 Doing basic analysis on speech acts from the *My Little Pony* show.
 
-## HW4: Setting up a Bokeh Dashboard
+## Setting up a Bokeh Dashboard (bokeh-dash)
 
 Displaying response time to incidents in New York City for different zipcodes in a simple Bokeh dashboard set up on an AWS server.
 
-## HW5: Data Collection and Cleaning
+## Data Collection and Cleaning (unit-testing)
 
 Cleaning data for analysis and doing unit testing to validate approach.
 
-## HW6: API Data Collection and Web Scraping
+## API Data Collection and Web Scraping (api-web-scraping)
 
 Collecting data from reddit posts using Reddit's API and performing simple analyses on them. Using alternative data collection methods (e.g. webscraping).
 
-## HW7: Data Annotation
+## Data Annotation (university-subreddit)
 
 Manually annotating data, analyzing and performing open coding to learn about the importance of data annotation/features.
 
-## HW8: Simple Natural Language Processing
+## Simple Natural Language Processing (basic-nlp)
 
 Performing a simple TF-IDF analysis on *My Little Pony* speech acts
 
-## HW9: Network Modelling
+## Network Modelling (network-modelling)
 
 Analyzing conversation data using basic network modelling.
